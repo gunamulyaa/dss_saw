@@ -13,8 +13,8 @@ function Sidebar() {
         <Nav.Link href="/" className="sidebar-link">
           <HomeIcon /> Home
         </Nav.Link>
-        <Nav.Link href="/about" className="sidebar-link">
-          <InfoIcon /> History
+        <Nav.Link href="/Riwayat" className="sidebar-link">
+          <InfoIcon /> Riwayat
         </Nav.Link>
       </Nav>
     </div>
