@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../Sidebar.css";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
+import CalculateIcon from "@mui/icons-material/Calculate";
 
 function Sidebar() {
   return (
@@ -12,6 +13,9 @@ function Sidebar() {
       <Nav className="flex-column">
         <Nav.Link href="/" className="sidebar-link">
           <HomeIcon /> Home
+        </Nav.Link>
+        <Nav.Link href="/Hasil" className="sidebar-link">
+          <CalculateIcon /> Hasil
         </Nav.Link>
         <Nav.Link href="/Riwayat" className="sidebar-link">
           <InfoIcon /> Riwayat
