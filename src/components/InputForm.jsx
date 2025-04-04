@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
+import "../InputForm.css";
 
 function InputForm() {
   const [alternatives, setAlternatives] = useState([]);
@@ -49,7 +50,7 @@ function InputForm() {
               Hapus
             </Button>
           </Card.Header>
-          <Card.Body>
+          <Card.Body className="text-start">
             <Form>
               <Form.Group className="mb-2">
                 <Form.Label>Nama Alternatif</Form.Label>
