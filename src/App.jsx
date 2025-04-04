@@ -1,10 +1,11 @@
 import Sidebar from "./components/Sidebar";
+import "./App.css";
 
 function App() {
   return (
-    <div style={{ display: "flex" }}>
+    <div className="app-container">
       <Sidebar />
-      <div style={{ flex: 1, padding: "20px" }}>
+      <div className="content">
         <h1>Selamat Datang di DSS SAW</h1>
       </div>
     </div>

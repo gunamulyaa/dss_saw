@@ -1,26 +1,39 @@
 .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
     width: 250px;
     height: 100vh;
     background: linear-gradient(90deg, #007bff, #00c6ff);
-    padding: 20px;
     color: white;
+    padding: 50px 20px 50px 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   }
   
-  .title {
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .nav-links a {
-    display: block;
+  .sidebar-link {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
     padding: 10px;
-    color: white;
     text-decoration: none;
+    transition: all 0.3s ease;
     font-size: 18px;
   }
   
-  .nav-links a:hover {
-    background: rgba(255, 255, 255, 0.2);
+  .sidebar-link:hover {
+    background: rgba(255, 255, 255, 0.486);
+    border-radius: 5px;
+  }
+  
+  .toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
   }
   
