@@ -1,13 +1,14 @@
 import Sidebar from "./components/Sidebar";
 import "./App.css";
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import InputForm from "./components/InputForm";
 
 function App() {
   return (
-    <div className="app-container">
+    <div className="content">
       <Sidebar />
-      <div className="content">
-        <h1>Sistem Pemilihan Asuransi</h1>
-      </div>
+      <InputForm />
     </div>
   );
 }
