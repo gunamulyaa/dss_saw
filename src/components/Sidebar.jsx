@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../Sidebar.css";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
-import MailIcon from "@mui/icons-material/Mail";
 
 function Sidebar() {
   return (
@@ -15,10 +14,7 @@ function Sidebar() {
           <HomeIcon /> Home
         </Nav.Link>
         <Nav.Link href="/about" className="sidebar-link">
-          <InfoIcon /> About
-        </Nav.Link>
-        <Nav.Link href="/contact" className="sidebar-link">
-          <MailIcon /> Contact
+          <InfoIcon /> History
         </Nav.Link>
       </Nav>
     </div>

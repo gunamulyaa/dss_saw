@@ -6,7 +6,7 @@ function App() {
     <div className="app-container">
       <Sidebar />
       <div className="content">
-        <h1>Selamat Datang di DSS SAW</h1>
+        <h1>Sistem Pemilihan Asuransi</h1>
       </div>
     </div>
   );

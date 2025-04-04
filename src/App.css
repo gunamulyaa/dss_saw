@@ -14,10 +14,10 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #333333);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #333333);
 }
 
 @keyframes logo-spin {
@@ -52,6 +52,7 @@
   align-items: flex-start; /* Naikkan ke atas */
   height: 80vh; /* Kurangi sedikit agar tidak terlalu ke bawah */
   text-align: center;
-  font-size: 14px; /* Perbesar teks */
+  font-size: 10px; /* Perbesar teks */
   font-weight: bold;
+  color: #333333;
 }
