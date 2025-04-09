@@ -3,12 +3,11 @@ import { Form, Button, Card } from "react-bootstrap";
 import "../InputForm.css";
 
 function InputForm() {
-  const [alternatives, setAlternatives] = useState([]);
+  const [alternatives, setAlternatives] = useState([false]);
 
-  // Menambah alternatif baru
   const addAlternative = () => {
     const newAlternative = {
-      id: alternatives.length + 1,
+      id: Date.now(),
       name: "",
       age: "",
       healthHistory: "",
@@ -16,16 +15,15 @@ function InputForm() {
       hospitalCoverage: "",
       treatmentPreference: "",
     };
-
     setAlternatives([...alternatives, newAlternative]);
   };
 
-  // Menghapus alternatif berdasarkan ID
   const removeAlternative = (id) => {
-    setAlternatives(alternatives.filter((alt) => alt.id !== id));
+    if (alternatives.length > 1) {
+      setAlternatives(alternatives.filter((alt) => alt.id !== id));
+    }
   };
 
-  // Mengupdate nilai input di setiap alternatif
   const handleChange = (id, field, value) => {
     setAlternatives(
       alternatives.map((alt) =>
@@ -46,9 +44,15 @@ function InputForm() {
         <Card className="mb-3" key={alt.id}>
           <Card.Header className="d-flex justify-content-between align-items-center">
             <strong>Alternatif {index + 1}</strong>
-            <Button variant="danger" size="sm" onClick={() => removeAlternative(alt.id)}>
-              Hapus
-            </Button>
+            {alternatives.length > 1 && (
+              <Button
+                variant="danger"
+                size="sm"
+                onClick={() => removeAlternative(alt.id)}
+              >
+                Hapus
+              </Button>
+            )}
           </Card.Header>
           <Card.Body className="text-start">
             <Form>
@@ -57,7 +61,9 @@ function InputForm() {
                 <Form.Control
                   type="text"
                   value={alt.name}
-                  onChange={(e) => handleChange(alt.id, "name", e.target.value)}
+                  onChange={(e) =>
+                    handleChange(alt.id, "name", e.target.value)
+                  }
                 />
               </Form.Group>
 
@@ -66,7 +72,9 @@ function InputForm() {
                 <Form.Control
                   type="number"
                   value={alt.age}
-                  onChange={(e) => handleChange(alt.id, "age", e.target.value)}
+                  onChange={(e) =>
+                    handleChange(alt.id, "age", e.target.value)
+                  }
                 />
               </Form.Group>
 
@@ -77,7 +85,9 @@ function InputForm() {
                   min="1"
                   max="5"
                   value={alt.healthHistory}
-                  onChange={(e) => handleChange(alt.id, "healthHistory", e.target.value)}
+                  onChange={(e) =>
+                    handleChange(alt.id, "healthHistory", e.target.value)
+                  }
                 />
               </Form.Group>
 
@@ -86,7 +96,9 @@ function InputForm() {
                 <Form.Control
                   type="number"
                   value={alt.budget}
-                  onChange={(e) => handleChange(alt.id, "budget", e.target.value)}
+                  onChange={(e) =>
+                    handleChange(alt.id, "budget", e.target.value)
+                  }
                 />
               </Form.Group>
 
@@ -95,7 +107,9 @@ function InputForm() {
                 <Form.Control
                   type="text"
                   value={alt.hospitalCoverage}
-                  onChange={(e) => handleChange(alt.id, "hospitalCoverage", e.target.value)}
+                  onChange={(e) =>
+                    handleChange(alt.id, "hospitalCoverage", e.target.value)
+                  }
                 />
               </Form.Group>
 
@@ -106,13 +120,21 @@ function InputForm() {
                   min="1"
                   max="2"
                   value={alt.treatmentPreference}
-                  onChange={(e) => handleChange(alt.id, "treatmentPreference", e.target.value)}
+                  onChange={(e) =>
+                    handleChange(alt.id, "treatmentPreference", e.target.value)
+                  }
                 />
               </Form.Group>
             </Form>
           </Card.Body>
         </Card>
       ))}
+
+      {alternatives.length > 0 && (
+        <Button variant="success" onClick={() => console.log(alternatives)}>
+          Simpan
+        </Button>
+      )}
     </div>
   );
 }
