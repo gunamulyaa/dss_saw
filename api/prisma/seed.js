@@ -1,5 +1,4 @@
-const CriteriaType = require('../generated/prisma/index-browser.js');
-const { PrismaClient } = require('../generated/prisma');
+const { PrismaClient, CriteriaType } = require('../generated/prisma');
 
 const prisma = new PrismaClient()
 
@@ -44,28 +43,28 @@ async function main() {
     ],
   })
 
-  criteria = await prisma.criteria.findFirst({
-    where: {
-      criteriaName: 'Proses Klaim'
-    }
-  })
+  // criteria = await prisma.criteria.findFirst({
+  //   where: {
+  //     criteriaName: 'Proses Klaim'
+  //   }
+  // })
 
-  await prisma.criteria.createMany({
-    data: [
-      {
-        criteriaName: 'Lama Proses',
-        type: CriteriaType.COST,
-        weight: 0.60,
-        parentCriteriaId: criteria.criteriaId
-      },
-      {
-        criteriaName: 'Dokumen Pendukung',
-        type: CriteriaType.COST,
-        weight: 0.40,
-        parentCriteriaId: criteria.criteriaId
-      },
-    ],
-  })
+  // await prisma.criteria.createMany({
+  //   data: [
+  //     {
+  //       criteriaName: 'Lama Proses',
+  //       type: CriteriaType.COST,
+  //       weight: 0.60,
+  //       parentCriteriaId: criteria.criteriaId
+  //     },
+  //     {
+  //       criteriaName: 'Dokumen Pendukung',
+  //       type: CriteriaType.COST,
+  //       weight: 0.40,
+  //       parentCriteriaId: criteria.criteriaId
+  //     },
+  //   ],
+  // })
 
   console.log('✅ Seed success!')
 }
