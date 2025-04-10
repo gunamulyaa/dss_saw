@@ -13,3 +13,10 @@ If you are developing a production application, we recommend using TypeScript an
 
 ## How to Run
     - npm run dev
+
+## BE Setup
+    - create postgres database
+    - npm run generate
+    - npx prisma db push
+    - npm run seed
+    - npm run dev

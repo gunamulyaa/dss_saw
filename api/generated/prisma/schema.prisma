@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Criteria {
+  criteriaId              Int                      @id @default(autoincrement())
+  criteriaName            String
+  type                    CriteriaType             @default(BENEFIT)
+  weight                  Float
+  parentCriteriaId        Int?
+  parentCriteria          Criteria?                @relation("ParentCriteria", fields: [parentCriteriaId], references: [criteriaId])
+  childCriterias          Criteria[]               @relation("ParentCriteria")
+  dssCriteriaAlternatives DssCriteriaAlternative[]
+  createdAt               DateTime                 @default(now())
+}
+
+enum CriteriaType {
+  COST
+  BENEFIT
+}
+
+model Dss {
+  dssId                   Int                      @id @default(autoincrement())
+  creator                 String
+  dssAlternatives         DssAlternative[]
+  dssCriteriaAlternatives DssCriteriaAlternative[]
+  createdAt               DateTime                 @default(now())
+}
+
+model DssAlternative {
+  dssAlternativeId        Int                      @id @default(autoincrement())
+  dss                     Dss                      @relation(fields: [dssId], references: [dssId])
+  dssId                   Int
+  name                    String
+  sValue                  Float?
+  rankValue               Int?
+  dssCriteriaAlternatives DssCriteriaAlternative[]
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @default(now())
+}
+
+model DssCriteriaAlternative {
+  dssCriteriaAlternativeId Int            @id @default(autoincrement())
+  dss                      Dss            @relation(fields: [dssId], references: [dssId])
+  dssId                    Int
+  dssAlternative           DssAlternative @relation(fields: [dssAlternativeId], references: [dssAlternativeId])
+  dssAlternativeId         Int
+  criteria                 Criteria       @relation(fields: [criteriaId], references: [criteriaId])
+  criteriaId               Int
+  value                    Float?
+  createdAt                DateTime       @default(now())
+}

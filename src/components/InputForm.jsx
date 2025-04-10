@@ -1,19 +1,32 @@
 import React, { useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
 import "../InputForm.css";
 
 function InputForm() {
   const [alternatives, setAlternatives] = useState([false]);
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    navigate('./hasil.jsx', {
+      state: {
+        data: alternatives
+      }
+    });
+  };
 
   const addAlternative = () => {
     const newAlternative = {
       id: Date.now(),
-      name: "",
-      age: "",
-      healthHistory: "",
-      budget: "",
-      hospitalCoverage: "",
-      treatmentPreference: "",
+      alternativeName: "",
+      insurancePremium: "",
+      coverageAmount: "",
+      waitingPeriode: "",
+      coverageType: "",
+      annualVisitLimit: "",
+      partnerHospitals: "",
+      claimProcessSpeed: "",
+
     };
     setAlternatives([...alternatives, newAlternative]);
   };
@@ -60,78 +73,97 @@ function InputForm() {
                 <Form.Label>Nama Alternatif</Form.Label>
                 <Form.Control
                   type="text"
-                  value={alt.name}
+                  value={alt.alternativeName}
                   onChange={(e) =>
-                    handleChange(alt.id, "name", e.target.value)
+                    handleChange(alt.id, "alternativeName", e.target.value)
                   }
                 />
               </Form.Group>
 
               <Form.Group className="mb-2">
-                <Form.Label>Usia</Form.Label>
+                <Form.Label>Harga Premi</Form.Label>
                 <Form.Control
                   type="number"
-                  value={alt.age}
+                  value={alt.insurancePremium}
                   onChange={(e) =>
-                    handleChange(alt.id, "age", e.target.value)
+                    handleChange(alt.id, "insurancePremium", e.target.value)
                   }
                 />
               </Form.Group>
 
               <Form.Group className="mb-2">
-                <Form.Label>Riwayat Kesehatan (1-5)</Form.Label>
+                <Form.Label>Jumlah Pertanggungan</Form.Label>
                 <Form.Control
                   type="number"
-                  min="1"
-                  max="5"
-                  value={alt.healthHistory}
+                  value={alt.coverageAmount}
                   onChange={(e) =>
-                    handleChange(alt.id, "healthHistory", e.target.value)
+                    handleChange(alt.id, "coverageAmount", e.target.value)
                   }
                 />
               </Form.Group>
 
               <Form.Group className="mb-2">
-                <Form.Label>Budget</Form.Label>
+                <Form.Label>Masa Tunggu Klaim</Form.Label>
                 <Form.Control
                   type="number"
-                  value={alt.budget}
+                  value={alt.waitingPeriode}
                   onChange={(e) =>
-                    handleChange(alt.id, "budget", e.target.value)
+                    handleChange(alt.id, "waitingPeriode", e.target.value)
                   }
                 />
               </Form.Group>
 
               <Form.Group className="mb-2">
-                <Form.Label>Cakupan Rumah Sakit</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={alt.hospitalCoverage}
-                  onChange={(e) =>
-                    handleChange(alt.id, "hospitalCoverage", e.target.value)
-                  }
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-2">
-                <Form.Label>Preferensi Rawat (1: Inap, 2: Jalan)</Form.Label>
+                <Form.Label>Limit Kunjungan/Tahun</Form.Label>
                 <Form.Control
                   type="number"
-                  min="1"
-                  max="2"
-                  value={alt.treatmentPreference}
+                  value={alt.annualVisitLimit}
                   onChange={(e) =>
-                    handleChange(alt.id, "treatmentPreference", e.target.value)
+                    handleChange(alt.id, "annualVisitLimit", e.target.value)
                   }
                 />
               </Form.Group>
+
+              <Form.Group className="mb-2">
+                <Form.Label>Cakupan Perlindungan</Form.Label>
+                <Form.Control
+                  type="number"
+                  value={alt.coverageType}
+                  onChange={(e) =>
+                    handleChange(alt.id, "coverageType", e.target.value)
+                  }
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-2">
+                <Form.Label>Rumah Sakit Rekanan</Form.Label>
+                <Form.Control
+                  type="number"
+                  value={alt.partnerHospitals}
+                  onChange={(e) =>
+                    handleChange(alt.id, "partnerHospitals", e.target.value)
+                  }
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-2">
+                <Form.Label>Proses Klaim</Form.Label>
+                <Form.Control
+                  type="number"
+                  value={alt.claimProcessSpeed}
+                  onChange={(e) =>
+                    handleChange(alt.id, "claimProcessSpeed", e.target.value)
+                  }
+                />
+              </Form.Group>
+
             </Form>
           </Card.Body>
         </Card>
       ))}
 
       {alternatives.length > 0 && (
-        <Button variant="success" onClick={() => console.log(alternatives)}>
+        <Button variant="success" onClick={handleSubmit}>
           Simpan
         </Button>
       )}
